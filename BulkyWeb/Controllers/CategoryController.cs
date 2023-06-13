@@ -1,4 +1,5 @@
 ﻿using Bulky.DataAccess.Data;
+using Bulky.DataAccess.Repository.IRepository;
 using Bulky.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,11 +7,11 @@ namespace BulkyWeb.Controllers;
 
 public class CategoryController : Controller
 {
-	private readonly ApplicationDbContext _db;
+	private readonly ICategoryRepository _catRepo;
 
-	public CategoryController(ApplicationDbContext db)
+	public CategoryController(ICategoryRepository catRepo)
 	{
-		_db = db;
+		_catRepo = catRepo;
 	}
 
 
@@ -20,7 +21,7 @@ public class CategoryController : Controller
 	////////////////////////////////////////////////
 	public IActionResult Index()
 	{
-		List<Category> categories = _db.Categories.ToList();
+		List<Category> categories = _catRepo.GetAll().ToList();
 
 		return View(categories);
 	}
@@ -52,8 +53,8 @@ public class CategoryController : Controller
 
 		if (ModelState.IsValid)
 		{
-			_db.Categories.Add(obj);
-			_db.SaveChanges();
+			_catRepo.Add(obj);
+			_catRepo.Save();
 
 			TempData["success"] = "Category created successfully."; 
 			// accedo a esta con el volor de la key "success"
@@ -76,7 +77,7 @@ public class CategoryController : Controller
 	{
 		if (id == null || id == 0) return NotFound(); // aca podria enviar a una error page p.ej.
 
-		var category = _db.Categories.Find(id);
+		var category = _catRepo.Get(c => c.Id == id);
 
 		if (category == null) return NotFound();
 
@@ -88,8 +89,8 @@ public class CategoryController : Controller
 	{
 		if (ModelState.IsValid)
 		{
-			_db.Categories.Update(obj);
-			_db.SaveChanges();
+			_catRepo.Update(obj);
+			_catRepo.Save();
 
 			TempData["success"] = "Category edited successfully.";
 
@@ -107,7 +108,7 @@ public class CategoryController : Controller
 	{
 		if (id == null || id == 0) return NotFound(); // aca podria enviar a una error page p.ej.
 
-		var category = _db.Categories.Find(id);
+		var category = _catRepo.Get(c => c.Id == id);
 
 		if (category == null) return NotFound();
 
@@ -120,12 +121,12 @@ public class CategoryController : Controller
 	{
 		if (id == null || id == 0) return NotFound();
 
-		var category = _db.Categories.Find(id);
+		var category = _catRepo.Get(c => c.Id == id);
 
 		if (category == null) return NotFound();
 
-		_db.Categories.Remove(category);
-		_db.SaveChanges();
+		_catRepo.Remove(category);
+		_catRepo.Save();
 
 		TempData["success"] = "Category deleted successfully.";
 
