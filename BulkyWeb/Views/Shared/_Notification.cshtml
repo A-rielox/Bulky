@@ -1,0 +1,23 @@
+﻿@if (TempData["success"] != null)
+{
+	@* el de jquery tambien, es el q ya tengo en lib *@
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	@* el CDN p'el javascript va aca *@
+	<script src=" //cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+	
+
+	<script type="text/javascript">
+		toastr.info('@TempData["success"]');
+	</script>
+}
+
+@if (TempData["error"] != null)
+{
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src=" //cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+
+	<script type="text/javascript">
+		toastr.success('@TempData["success"]');
+	</script>
+}
