@@ -96,7 +96,6 @@ public class CategoryController : Controller
             TempData["success"] = "Category edited successfully.";
 
             return RedirectToAction("Index");
-
         }
 
         return View();

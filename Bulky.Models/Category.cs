@@ -5,7 +5,7 @@ namespace Bulky.Models;
 
 public class Category
 {
-    // [Key]
+    [Key]
     public int Id { get; set; }
 
 
@@ -18,4 +18,6 @@ public class Category
     [Range(1, 100, ErrorMessage = "El valor debe ser entre {1} y {2}")]
     [DisplayName("Display Order")]
     public int DisplayOrder { get; set; }
+
+    //public List<Product> Products { get; set; }
 }
