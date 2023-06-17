@@ -7,23 +7,23 @@ namespace Bulky.Models;
 
 public class Product
 {
-    public int Id { get; set; }
+	public int Id { get; set; }
 
-    [Required]
-    public string Title { get; set; }
+	[Required]
+	public string Title { get; set; }
 
-    public string Description { get; set; }
+	public string Description { get; set; }
 
-    [Required]
-    public string ISBN { get; set; }
+	[Required]
+	public string ISBN { get; set; }
 
-    [Required]
-    public string Author { get; set; }
+	[Required]
+	public string Author { get; set; }
 
-    [Required]
-    [DisplayName("List Price")]
-    [Range(1, 1000)]
-    public double ListPrice { get; set; }
+	[Required]
+	[DisplayName("List Price")]
+	[Range(1, 1000)]
+	public double ListPrice { get; set; }
 
 	[Required]
 	[DisplayName("Price for 1-50")]
@@ -46,9 +46,9 @@ public class Product
 	public string ImageUrl { get; set; }
 
 
-    // sin agregar public List<Product> Products { get; set; } en Category
-    public int CategoryId { get; set; }
-    [ForeignKey("CategoryId")]
-    [ValidateNever]
-    public Category Category { get; set; }
+	// sin agregar public List<Product> Products { get; set; } en Category
+	public int CategoryId { get; set; }
+	[ForeignKey("CategoryId")]
+	[ValidateNever]
+	public Category Category { get; set; }
 }

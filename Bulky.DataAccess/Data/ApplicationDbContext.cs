@@ -11,15 +11,15 @@ public class ApplicationDbContext : DbContext
 	}
 
 
-    /////////////////////////////////////////
-    /////////////////////////////////////////
+	/////////////////////////////////////////
+	/////////////////////////////////////////
 
-    public DbSet<Category> Categories { get; set; }
-    public DbSet<Product> Products { get; set; }
+	public DbSet<Category> Categories { get; set; }
+	public DbSet<Product> Products { get; set; }
 
 
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
 		modelBuilder.Entity<Category>().HasData(
 			new Category { Id = 1, Name = "Action", DisplayOrder = 1 },
